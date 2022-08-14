@@ -1,20 +1,19 @@
-import { createServer } from "http";
-import { Server } from "socket.io";
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
-  cors: {origin: "*"}
+  cors: { origin: '*' },
 });
 
-io.on('connection', socket => {
-  console.log(socket.id)
+io.on('connection', (socket) => {
+  console.log(socket.id);
 
-  socket.on('message', message => {
-    console.log(message)
+  socket.on('message', (message) => {
+    console.log(message);
 
-    io.emit('message', `someone said ${message}`)
-  })
-})
+    io.emit('message', `someone said ${message}`);
+  });
+});
 
-
-httpServer.listen(3000)
+httpServer.listen(3000);
